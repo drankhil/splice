@@ -82,7 +82,7 @@ export class CometBftNodeConfigs {
   }
 
   private p2pExternalAddress(nodeIndex: number): string {
-    return `${CLUSTER_HOSTNAME}:${this.istioExternalPort(nodeIndex)}`;
+    return `cometbft.${CLUSTER_HOSTNAME}:${this.istioExternalPort(nodeIndex)}`;
   }
 
   private istioExternalPort(nodeIndex: number) {
