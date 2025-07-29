@@ -3,17 +3,18 @@
 
 import { Box, Typography } from '@mui/material';
 import { DesktopDateTimePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { dateTimeFormatISO } from '@lfdecentralizedtrust/splice-common-frontend-utils';
 import { useFieldContext } from '../../hooks/formContext';
 
 export interface DateFieldProps {
   title?: string;
   description?: string;
+  minDate?: Dayjs;
 }
 
 export const DateField: React.FC<DateFieldProps> = props => {
-  const { title, description } = props;
+  const { title, description, minDate } = props;
   const field = useFieldContext<string>();
 
   return (
@@ -31,6 +32,8 @@ export const DateField: React.FC<DateFieldProps> = props => {
       <DesktopDateTimePicker
         value={dayjs(field.state.value)}
         format={dateTimeFormatISO}
+        minDateTime={minDate || dayjs()}
+        ampm={false}
         onChange={newDate => field.handleChange(newDate?.format(dateTimeFormatISO)!)}
         slotProps={{
           textField: {

@@ -1,11 +1,17 @@
 // Copyright (c) 2024 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Box, TextField as MuiTextField, Typography } from '@mui/material';
+import {
+  Box,
+  TextField as MuiTextField,
+  TextFieldProps as MuiTextFieldProps,
+  Typography,
+} from '@mui/material';
 import { useFieldContext } from '../../hooks/formContext';
 
 export interface TextFieldProps {
   title: string;
+  muiTextFieldProps?: MuiTextFieldProps;
 }
 
 export const TextField: React.FC<TextFieldProps> = props => {
@@ -23,6 +29,7 @@ export const TextField: React.FC<TextFieldProps> = props => {
         autoComplete="off"
         value={field.state.value}
         onBlur={field.handleBlur}
+        error={!field.state.meta.isValid}
         onChange={e => field.handleChange(e.target.value)}
       />
     </Box>

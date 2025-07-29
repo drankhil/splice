@@ -31,6 +31,7 @@ export const TextArea: React.FC<TextAreaProps> = props => {
         value={field.state.value}
         onBlur={field.handleBlur}
         onChange={e => field.handleChange(e.target.value)}
+        error={!field.state.meta.isValid}
       />
     </Box>
   );
